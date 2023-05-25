@@ -1,39 +1,42 @@
 #include<stdio.h>
-int pal(int i)
-{
-    int j,r,rev=0,temp;
-    temp=i;
-    for(j=i;i!=0;i/=10)
-    {
-        r=i%10;
-        rev=rev*10+r;
-    }
-    if(rev==temp) return 1;
-    else return 0;
-}
 int main()
 {
-    int n,i,f=0,f1=0,c=0,d=0;
+    int n,i,s,j,temp,cons,b;
     scanf("%d",&n);
-    for(i=n+1;i>n;i++)
+    //printf("%d",n);
+    for(i=n+1;i>0;i++)
     {
-        c++;
-        if(pal(i))
+        s=0;
+        for(j=i;j>0;j=j/10)
         {
-            f=i;
+            b=j%10;
+            s=s*10+b;
+        }
+        if(s==i)
+        {
+            temp=i;
             break;
         }
     }
-    for(i=n-1;i!=0;i--)
+    for(i=n-1;i>0;i--)
     {
-        d++;
-        if(pal(i))
+        s=0;
+        for(j=i;j>0;j=j/10)
         {
-            f1=i;
+            b=j%10;
+            s=s*10+b;
+        }
+        if(s==i)
+        {
+            cons=i;
+            //printf("cons: %d ",cons);
             break;
         }
     }
-    if(d==c) printf("%d %d",f1,f);
-    else if(d<c) printf("%d",f1);
-    else printf("%d",f);
+    if(temp-n>n-cons)
+    printf("%d",cons);
+    else if(temp-n<n-cons)
+    printf("%d",temp);
+    else if(temp-n==n-cons)
+    printf("%d %d",cons,temp);
 }
